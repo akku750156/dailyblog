@@ -2,7 +2,7 @@ import React from "react";
 
 function Homebanner() {
   return (
-    <div className="w-full">
+    <div className="w-full my-20">
       <div className="md:w-2/3 w-full">
         <header className="text-5xl md:text-8xl font-semibold text-yellow-300 py-4">
           dailyBLOG
