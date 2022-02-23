@@ -1,11 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { HomeFilled, PhoneFilled, UserOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  PhoneOutlined,
+  UserOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 z-50 bg-black h-20 w-full flex justify-center items-center flex-col">
+    <nav className="fixed top-0 z-50 bg-gradient-to-b from-black to-transparent h-20 w-full flex justify-center items-center flex-col">
       <div className="w-10/12 flex items-center justify-between h-full">
         <Link href="/" passHref>
           <div className="flex items-center gap-5">
@@ -23,13 +28,13 @@ function Navbar() {
         <div className="fixed left-0 w-full lg:w-fit bottom-0 py-3 lg:py-0 flex justify-evenly lg:justify-center lg:static lg:gap-8">
           <Link href="/" passHref>
             <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
-              <HomeFilled />
+              <HomeOutlined />
               <h1 className="text-md font-light">Home</h1>
             </div>
           </Link>
           <Link href="/Contact" passHref>
             <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
-              <PhoneFilled />
+              <PhoneOutlined />
               <h1 className="text-md font-light">Contact</h1>
             </div>
           </Link>
@@ -37,6 +42,12 @@ function Navbar() {
             <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
               <UserOutlined />
               <h1 className="text-md font-light">About</h1>
+            </div>
+          </Link>
+          <Link href="/About" passHref>
+            <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
+              <LoginOutlined />
+              <h1 className="text-md font-light">Login</h1>
             </div>
           </Link>
         </div>
