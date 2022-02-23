@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <main>
       <Head>
-        <title>STORENAME - Apni Dukaan</title>
+        <title>dailyBlog</title>
       </Head>
 
       <Home />
