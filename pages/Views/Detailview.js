@@ -1,5 +1,7 @@
 import React from "react";
+import Link from "next/link";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
+
 function Detailview() {
   return (
     <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
@@ -11,9 +13,11 @@ function Detailview() {
         />
       </div>
       <div className="flex justify-end py-2">
-        <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
-          <EditFilled />
-        </div>
+        <Link href="/Views/UpdateView" passHref>
+          <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
+            <EditFilled />
+          </div>
+        </Link>
         <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
           <DeleteFilled />
         </div>

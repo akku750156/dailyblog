@@ -20,40 +20,40 @@ const Footer = () => {
           <div className="flex items-center gap-6">
             <i className="fa-solid fa-truck-fast text-5xl"></i>
             <div>
-              <h1 className="font-bold">Follow Us</h1>
+              <h1 className="font-bold md:mb-2">Follow Us</h1>
               <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                <a className="text-gray-500">
+                <a className="text-gray-500 border-2 border-yellow-200 p-2 rounded-full hover:text-blue-500">
                   <svg
                     fill="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    className="w-6 h-6 hover:text-blue-500"
+                    className="w-6 h-6 "
                     viewBox="0 0 24 24"
                   >
                     <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                   </svg>
                 </a>
-                <a className="ml-3 text-gray-500">
+                <a className="ml-3 text-gray-500 border-2 border-yellow-200 p-2 rounded-full hover:text-blue-300">
                   <svg
                     fill="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    className="w-6 h-6 hover:text-blue-400"
+                    className="w-6 h-6 "
                     viewBox="0 0 24 24"
                   >
                     <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
                   </svg>
                 </a>
-                <a className="ml-3 text-gray-500">
+                <a className="ml-3 text-gray-500 border-2 border-yellow-200 p-2 rounded-full hover:text-red-400">
                   <svg
                     fill="none"
                     stroke="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    className="w-6 h-6 hover:text-red-400"
+                    className="w-6 h-6 "
                     viewBox="0 0 24 24"
                   >
                     <rect
@@ -67,14 +67,14 @@ const Footer = () => {
                     <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                   </svg>
                 </a>
-                <a className="ml-3 text-gray-500">
+                <a className="ml-3 text-gray-500 border-2 border-yellow-200 p-2 rounded-full hover:text-blue-400">
                   <svg
                     fill="currentColor"
                     stroke="currentColor"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="0"
-                    className="w-6 h-6 hover:text-blue-400"
+                    className="w-6 h-6 "
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -104,7 +104,7 @@ const Footer = () => {
               © 2022 daily Blog —
               <a
                 href="https://github.com/akku750156"
-                className="text-gray-600 ml-1"
+                className="text-gray-600 ml-1 hover:text-yellow-300"
                 rel="noopener noreferrer"
                 target="_blank"
               >

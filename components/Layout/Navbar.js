@@ -25,7 +25,7 @@ function Navbar() {
           </div>
         </Link>
 
-        <div className="fixed left-0 w-full lg:w-fit bottom-0 py-3 lg:py-0 flex justify-evenly lg:justify-center lg:static lg:gap-8">
+        <div className="fixed left-0 w-full bg-black lg:bg-transparent lg:w-fit bottom-0 py-3 lg:py-0 flex justify-evenly lg:justify-center lg:static lg:gap-8">
           <Link href="/" passHref>
             <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
               <HomeOutlined />

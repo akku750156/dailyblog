@@ -7,6 +7,7 @@ function Blogs() {
       <Blog />
       <Blog />
       <Blog />
+      <Blog />
     </div>
   );
 }
