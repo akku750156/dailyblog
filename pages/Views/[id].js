@@ -2,6 +2,20 @@ import React from "react";
 import Link from "next/link";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
 
+// export const getStaticPaths = async () => {
+//   const res = await fetch("http://localhost:3002/posts");
+//   const data = await res.json();
+//   const paths = data.map((post) => {
+//     return {
+//       params: { id: post._id },
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
 function Detailview() {
   return (
     <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
