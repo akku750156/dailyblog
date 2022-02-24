@@ -2,27 +2,28 @@ import React from "react";
 
 function Categories() {
   return (
-    <div className="w-full">
-      <div className="flex flex-wrap justify-start items-center text-sm md:text-lg">
-        <button className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out">
-          Create BLOG
-        </button>
-        <div className="py-2 px-6 hover:bg-gray-800 mx-4 rounded-xl ">
-          Category 1
+    <div className="w-full my-12">
+      <div className="flex flex-wrap md:justify-start justify-around items-center text-sm md:text-lg">
+        <div className="py-2 px-6 hover:bg-gray-800 mr-4 rounded-xl ">
+          All Categories
         </div>
         <div className="py-2 px-6 hover:bg-gray-800 mx-4 rounded-xl ">
-          Category 2
+          Movies
         </div>
         <div className="py-2 px-6 hover:bg-gray-800 mx-4 rounded-xl ">
-          Category 3
+          Music
         </div>
         <div className="py-2 px-6 hover:bg-gray-800 mx-4 rounded-xl ">
-          Category 4
+          Sports
         </div>
         <div className="py-2 px-6 hover:bg-gray-800 mx-4 rounded-xl ">
-          Category 5
+          Technology
+        </div>
+        <div className="py-2 px-6 hover:bg-gray-800 mx-4 rounded-xl ">
+          Fashion
         </div>
       </div>
+      <hr className="my-8 border-gray-800" />
     </div>
   );
 }
