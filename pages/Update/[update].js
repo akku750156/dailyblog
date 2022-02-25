@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PlusCircleFilled } from "@ant-design/icons";
 import { updatePost } from "../api/api";
+import { useRouter } from "next/router";
 
 export const getStaticProps = async (context) => {
   const id = context.params.update;
@@ -37,12 +38,14 @@ const initialValues = {
 };
 
 function UpdateView({ post }) {
+  const router = useRouter();
   const [blog, setBlog] = useState(initialValues);
   const hanadleChange = (e) => {
     setBlog({ ...blog, [e.target.name]: e.target.value });
   };
   const updateBlog = async (blog) => {
     await updatePost(post._id, blog);
+    router.push("/");
   };
   return (
     <div>
