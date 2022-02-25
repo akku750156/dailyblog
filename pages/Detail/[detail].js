@@ -4,7 +4,7 @@ import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import { Spin } from "antd";
 
 export const getStaticProps = async (context) => {
-  const id = context.params.id;
+  const id = context.params.detail;
   const res = await fetch("http://localhost:3002/posts");
   const data = await res.json();
   const newData = await data.find((p) => p._id === id);
@@ -19,7 +19,7 @@ export const getStaticPaths = async () => {
   const data = await res.json();
   const paths = data.map((post) => {
     return {
-      params: { id: post._id },
+      params: { detail: post._id },
     };
   });
   return {
@@ -41,7 +41,7 @@ function Detailview({ post }) {
             />
           </div>
           <div className="flex justify-end py-2">
-            <Link href="/Views/UpdateView" passHref>
+            <Link href={`/Update/${post._id}`} passHref>
               <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
                 <EditFilled />
               </div>
@@ -59,7 +59,7 @@ function Detailview({ post }) {
             <div>
               Author : <span className="font-bold">{post.username}</span>
             </div>
-            <div>{post.createPost}</div>
+            <div>{new Date(post.createDate).toDateString()}</div>
           </div>
           <div className=" my-4 lg:my-8 text-sm md:text-lg">
             <div>{post.description}</div>

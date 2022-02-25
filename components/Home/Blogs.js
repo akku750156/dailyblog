@@ -21,7 +21,7 @@ function Blogs({ posts }) {
         posts.map((post) => {
           return (
             <>
-              <Link href={`/Views/${post._id}`} key={post._id} passHref>
+              <Link href={`/Detail/${post._id}`} key={post._id} passHref>
                 <div className="lg:w-5/12 border-2 border-gray-700 md:mx-8 my-4 w-full rounded-xl">
                   <Blog post={post} />
                 </div>
@@ -34,7 +34,6 @@ function Blogs({ posts }) {
           <div>No Blogs available</div>
         </>
       )}
-      {console.log("posts", posts)}
     </div>
   );
 }
