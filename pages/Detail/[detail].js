@@ -5,7 +5,7 @@ import { Spin } from "antd";
 
 export const getStaticProps = async (context) => {
   const id = context.params.detail;
-  const res = await fetch("http://localhost:3002/posts");
+  const res = await fetch("https://dailyblog-server.herokuapp.com/posts");
   const data = await res.json();
   const newData = await data.find((p) => p._id === id);
 
@@ -15,7 +15,7 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3002/posts");
+  const res = await fetch("https://dailyblog-server.herokuapp.com/posts");
   const data = await res.json();
   const paths = data.map((post) => {
     return {
