@@ -3,7 +3,7 @@ import React from "react";
 function Blog({ post }) {
   const url =
     post.picture ||
-    "https://cdn.pixabay.com/photo/2016/08/09/21/54/lake-1581879_1280.jpg";
+    "https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067_1280.png";
 
   return (
     <div className="flex flex-col justify-center items-start w-full p-4">

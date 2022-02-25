@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PlusCircleFilled } from "@ant-design/icons";
 import { createPost } from "../api/api";
+import { useRouter } from "next/router";
 
 const initialValues = {
   title: "",
@@ -12,6 +13,7 @@ const initialValues = {
 };
 
 function CreateView() {
+  const router = useRouter();
   const [post, setPost] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -20,8 +22,7 @@ function CreateView() {
 
   const savePost = () => {
     createPost(post);
-
-    window.location.href = "/";
+    router.push("/");
   };
 
   return (
