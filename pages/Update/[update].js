@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { PlusCircleFilled } from "@ant-design/icons";
+import { updatePost } from "../api/api";
 
 export const getStaticProps = async (context) => {
   const id = context.params.update;
@@ -26,7 +27,23 @@ export const getStaticPaths = async () => {
   };
 };
 
+const initialValues = {
+  title: "",
+  description: "",
+  picture: "",
+  username: "akku750156",
+  categories: "All",
+  createDate: new Date(),
+};
+
 function UpdateView({ post }) {
+  const [blog, setBlog] = useState(initialValues);
+  const hanadleChange = (e) => {
+    setBlog({ ...blog, [e.target.name]: e.target.value });
+  };
+  const updateBlog = async (blog) => {
+    await updatePost(post._id, blog);
+  };
   return (
     <div>
       <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
@@ -45,19 +62,32 @@ function UpdateView({ post }) {
         <div className="flex justify-center">
           <input
             className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300 bg-black outline-none"
-            value={post.title}
+            // value={post.title}
             // placeholder="Title of your blog"
+            name="title"
+            onChange={(e) => {
+              hanadleChange(e);
+            }}
           />
         </div>
         <div className=" my-4 lg:my-8 text-sm md:text-lg">
           <textarea
             className="w-full h-48 bg-gray-800 resize-none text-sm p-2 focus:outline-none"
-            value={post.description}
+            // value={post.description}
             // placeholder="Tell your story..."
+            name="description"
+            onChange={(e) => {
+              hanadleChange(e);
+            }}
           />
         </div>
         <div className="flex justify-end">
-          <button className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out">
+          <button
+            onClick={() => {
+              updateBlog(blog);
+            }}
+            className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out"
+          >
             Update
           </button>
         </div>
