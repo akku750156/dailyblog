@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PlusCircleFilled } from "@ant-design/icons";
-import { createPost } from "../api/api";
+import { createPost } from "./api/api";
 import { useRouter } from "next/router";
 
 const initialValues = {
