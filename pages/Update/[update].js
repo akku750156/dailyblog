@@ -46,7 +46,7 @@ function UpdateView({ post }) {
   };
   const updateBlog = async (blog) => {
     await updatePost(post._id, blog);
-    router.push("/");
+    router.push(`/Detail/${post._id}`);
   };
   return (
     <div>
