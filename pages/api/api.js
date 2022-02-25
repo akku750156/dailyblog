@@ -23,6 +23,6 @@ export const updatePost = async (id, post) => {
   try {
     await axios.post(`${URL}/update/${id}`, post);
   } catch (error) {
-    console.log("Error while calling UpdatePost API", error);
+    console.log("Error while calling updatePost API", error);
   }
 };

@@ -20,8 +20,8 @@ function CreateView() {
     setPost({ ...post, [e.target.name]: e.target.value });
   };
 
-  const savePost = () => {
-    createPost(post);
+  const savePost = async () => {
+    await createPost(post);
     router.push("/");
   };
 
