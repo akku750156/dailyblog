@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { PlusCircleFilled } from "@ant-design/icons";
+import { updatePost } from "../api/api";
+import { useRouter } from "next/router";
 
 export const getStaticProps = async (context) => {
   const id = context.params.update;
@@ -8,16 +10,16 @@ export const getStaticProps = async (context) => {
   const newData = await data.find((p) => p._id === id);
 
   return {
-    props: { post: newData },
+    props: { blog: newData },
   };
 };
 
 export const getStaticPaths = async () => {
   const res = await fetch("http://localhost:3002/posts");
   const data = await res.json();
-  const paths = data.map((post) => {
+  const paths = data.map((blog) => {
     return {
-      params: { update: post._id },
+      params: { update: blog._id },
     };
   });
   return {
@@ -26,7 +28,27 @@ export const getStaticPaths = async () => {
   };
 };
 
-function UpdateView({ post }) {
+const initialValues = {
+  title: "",
+  description: "",
+  picture: "",
+  username: "akku750156",
+  categories: "All",
+  createDate: new Date(),
+};
+
+function UpdateView({ blog }) {
+  const router = useRouter();
+  const [post, setPost] = useState(initialValues);
+  const handleChange = (e) => {
+    setPost({ ...post, [e.target.name]: e.target.value });
+  };
+
+  const updateBlog = async (post) => {
+    await updatePost(blog._id, post);
+    router.push("/");
+  };
+
   return (
     <div>
       <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
@@ -45,19 +67,32 @@ function UpdateView({ post }) {
         <div className="flex justify-center">
           <input
             className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300 bg-black outline-none"
-            value={post.title}
+            // value={blog.title}
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            name="title"
             // placeholder="Title of your blog"
           />
         </div>
         <div className=" my-4 lg:my-8 text-sm md:text-lg">
           <textarea
             className="w-full h-48 bg-gray-800 resize-none text-sm p-2 focus:outline-none"
-            value={post.description}
+            // value={blog.description}
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            name="description"
             // placeholder="Tell your story..."
           />
         </div>
         <div className="flex justify-end">
-          <button className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out">
+          <button
+            onClick={() => {
+              updateBlog(post);
+            }}
+            className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out"
+          >
             Update
           </button>
         </div>

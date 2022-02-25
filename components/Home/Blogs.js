@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Blog from "../Home/Blog";
 import Link from "next/link";
-import { getAllPosts } from "../../pages/api/api";
 
 function Blogs({ posts }) {
-  // const [posts, setPosts] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     let data = await getAllPosts();
-  //     setPosts(data);
-  //     console.log(posts);
-  //   };
-  //   fetchData();
-  // }, [posts]);
-
   return (
     <div className="w-full flex  flex-wrap justify-center">
       {posts ? (
