@@ -10,7 +10,7 @@ export const getStaticProps = async (context) => {
   const newData = await data.find((p) => p._id === id);
 
   return {
-    props: { blog: newData },
+    props: { post: newData },
   };
 };
 
@@ -28,19 +28,20 @@ export const getStaticPaths = async () => {
   };
 };
 
-const initialValues = {
-  title: "",
-  description: "",
-  picture: "",
-  username: "akku750156",
-  categories: "All",
-  createDate: new Date(),
-};
-
 function UpdateView({ post }) {
+  const initialValues = {
+    title: post.title,
+    description: post.description,
+    picture: post.picture,
+    username: post.username,
+    categories: post.categories,
+    createDate: new Date(),
+  };
+
   const router = useRouter();
   const [blog, setBlog] = useState(initialValues);
-  const hanadleChange = (e) => {
+  const handleChange = (e) => {
+    console.log({ [e.target.name]: e.target.value });
     setBlog({ ...blog, [e.target.name]: e.target.value });
   };
   const updateBlog = async (blog) => {
@@ -65,23 +66,17 @@ function UpdateView({ post }) {
         <div className="flex justify-center">
           <input
             className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300 bg-black outline-none"
-            // value={post.title}
-            // placeholder="Title of your blog"
+            value={blog.title}
             name="title"
-            onChange={(e) => {
-              hanadleChange(e);
-            }}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className=" my-4 lg:my-8 text-sm md:text-lg">
           <textarea
             className="w-full h-48 bg-gray-800 resize-none text-sm p-2 focus:outline-none"
-            // value={post.description}
-            // placeholder="Tell your story..."
+            value={blog.description}
             name="description"
-            onChange={(e) => {
-              hanadleChange(e);
-            }}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="flex justify-end">
