@@ -37,7 +37,6 @@ const initialValues = {
   createDate: new Date(),
 };
 
-<<<<<<< HEAD
 function UpdateView({ post }) {
   const router = useRouter();
   const [blog, setBlog] = useState(initialValues);
@@ -48,20 +47,6 @@ function UpdateView({ post }) {
     await updatePost(post._id, blog);
     router.push("/");
   };
-=======
-function UpdateView({ blog }) {
-  const router = useRouter();
-  const [post, setPost] = useState(initialValues);
-  const handleChange = (e) => {
-    setPost({ ...post, [e.target.name]: e.target.value });
-  };
-
-  const updateBlog = async (post) => {
-    await updatePost(blog._id, post);
-    router.push("/");
-  };
-
->>>>>>> 216e3f0c7aa6376c541bb71d1f9e83a9bae45316
   return (
     <div>
       <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
@@ -80,15 +65,7 @@ function UpdateView({ blog }) {
         <div className="flex justify-center">
           <input
             className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300 bg-black outline-none"
-<<<<<<< HEAD
             // value={post.title}
-=======
-            // value={blog.title}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            name="title"
->>>>>>> 216e3f0c7aa6376c541bb71d1f9e83a9bae45316
             // placeholder="Title of your blog"
             name="title"
             onChange={(e) => {
@@ -99,15 +76,7 @@ function UpdateView({ blog }) {
         <div className=" my-4 lg:my-8 text-sm md:text-lg">
           <textarea
             className="w-full h-48 bg-gray-800 resize-none text-sm p-2 focus:outline-none"
-<<<<<<< HEAD
             // value={post.description}
-=======
-            // value={blog.description}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            name="description"
->>>>>>> 216e3f0c7aa6376c541bb71d1f9e83a9bae45316
             // placeholder="Tell your story..."
             name="description"
             onChange={(e) => {
@@ -118,11 +87,7 @@ function UpdateView({ blog }) {
         <div className="flex justify-end">
           <button
             onClick={() => {
-<<<<<<< HEAD
               updateBlog(blog);
-=======
-              updateBlog(post);
->>>>>>> 216e3f0c7aa6376c541bb71d1f9e83a9bae45316
             }}
             className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out"
           >
