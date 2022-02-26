@@ -11,6 +11,7 @@ export const getStaticProps = async (context) => {
 
   return {
     props: { post: newData },
+    revalidate: 10,
   };
 };
 
@@ -25,7 +26,6 @@ export const getStaticPaths = async () => {
   return {
     paths,
     fallback: false,
-    revalidate: 10,
   };
 };
 
