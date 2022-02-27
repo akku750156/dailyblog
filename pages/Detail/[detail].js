@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import { Spin } from "antd";
+import { useRouter } from "next/router";
+import { deletePost } from "../api/api";
 
 export const getStaticProps = async (context) => {
   const id = context.params.detail;
@@ -30,6 +32,13 @@ export const getStaticPaths = async () => {
 };
 
 function Detailview({ post }) {
+  const router = useRouter();
+
+  const deleteBlog = async () => {
+    await deletePost(post._id);
+    router.push("/");
+  };
+
   return (
     <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
       {post ? (
@@ -47,7 +56,10 @@ function Detailview({ post }) {
                 <EditFilled />
               </div>
             </Link>
-            <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
+            <div
+              onClick={() => deleteBlog()}
+              className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer"
+            >
               <DeleteFilled />
             </div>
           </div>

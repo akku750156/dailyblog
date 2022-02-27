@@ -26,3 +26,11 @@ export const updatePost = async (id, post) => {
     console.log("Error while calling updatePost API", error);
   }
 };
+
+export const deletePost = async (id) => {
+  try {
+    await axios.delete(`${URL}/delete/${id}`);
+  } catch (error) {
+    console.log("Error while calling deletePost API", error);
+  }
+};
