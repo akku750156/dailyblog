@@ -50,9 +50,9 @@ function Detailview({ post }) {
       {post ? (
         <>
           <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 ">
-            {post.image ? (
+            {post.picture ? (
               <img
-                src={post.images}
+                src={post.picture}
                 alt="Image"
                 className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
               />
