@@ -10,7 +10,7 @@ function CreateView() {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
   const [username] = useState("akku750156");
-  const [categories] = useState("All");
+  const [categories, setCategories] = useState();
   const [createDate] = useState(new Date());
   const [url, setUrl] = useState();
 
@@ -24,6 +24,7 @@ function CreateView() {
         .post("https://api.cloudinary.com/v1_1/di6pzmxin/upload", formData)
         .then((response) => {
           setUrl(response.data.url);
+          console.log(response.data.url);
         });
     }
   };
@@ -54,13 +55,31 @@ function CreateView() {
             className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
           />
         </div>
-        <div className="flex justify-start py-2">
+        <div className="flex justify-between py-2">
           <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
-            <PlusCircleFilled />
-            <input
-              type="file"
-              onChange={(e) => uploadImage(e.target.files[0])}
-            />
+            <label htmlFor="fileInput">
+              <PlusCircleFilled />
+              <input
+                type="file"
+                id="fileInput"
+                style={{ display: "none" }}
+                onChange={(e) => uploadImage(e.target.files[0])}
+              />
+            </label>
+          </div>
+          <div className="flex justify-center items-center md:border-2 border-yellow-300 rounded-xl">
+            <select
+              name="category"
+              className="mx-2 text-sm sm:text-md bg-transparent border-0 focus:ouline-none appearance-none"
+              onChange={(e) => setCategories(e.target.value)}
+            >
+              <option>Choose Category</option>
+              <option value="Movies">Movies</option>
+              <option value="Music">Music</option>
+              <option value="Sports">Sports</option>
+              <option value="Technology">Technollogy</option>
+              <option value="Fashion">Fashion</option>
+            </select>
           </div>
         </div>
         <div className="flex justify-center items-centers">

@@ -50,11 +50,19 @@ function Detailview({ post }) {
       {post ? (
         <>
           <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 ">
-            <img
-              src="/blogImage.jpeg"
-              alt=""
-              className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
-            />
+            {post.image ? (
+              <img
+                src={post.images}
+                alt="Image"
+                className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
+              />
+            ) : (
+              <img
+                src="/blogImage.jpeg"
+                alt="Image"
+                className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
+              />
+            )}
           </div>
           <div className="w-full flex justify-between items-center">
             {like ? (
