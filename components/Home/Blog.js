@@ -13,7 +13,7 @@ function Blog({ post }) {
           layout="fill"
           src={url}
           alt=""
-          className="rounded-2xl drop-shadow-xl"
+          className="rounded-2xl drop-shadow-xl w-full h-full object-cover"
         />
       </div>
       <div className="text-gray-500 text-sm">{post.categories}</div>
