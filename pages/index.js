@@ -5,13 +5,27 @@ export const getServerSideProps = async ({ query }) => {
   const username = query.username;
   const category = query.category;
 
-  const res = await fetch("https://dailyblog-server.herokuapp.com/posts");
-  const data = await res.json();
-  let newData = data;
-  if (username) {
-    newData = await data.filter((p) => p.username === username);
-  } else if (category) {
-    newData = await data.filter((p) => p.categories === category);
+  let data = [];
+  let newData = [];
+
+  try {
+    const res = await fetch("https://dailyblog-server.herokuapp.com/posts", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "User-Agent": "*",
+      },
+    });
+    data = await res.json();
+    if (username) {
+      newData = await data.filter((p) => p.username === username);
+    } else if (category) {
+      newData = await data.filter((p) => p.categories === category);
+    } else {
+      newData = data;
+    }
+  } catch (error) {
+    console.log(error);
   }
 
   return {
