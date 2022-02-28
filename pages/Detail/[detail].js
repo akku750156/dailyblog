@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { EditFilled, DeleteFilled } from "@ant-design/icons";
+import {
+  EditFilled,
+  DeleteFilled,
+  HeartFilled,
+  HeartOutlined,
+} from "@ant-design/icons";
 import { Spin } from "antd";
 import { useRouter } from "next/router";
 import { deletePost } from "../api/api";
@@ -33,6 +38,7 @@ export const getStaticPaths = async () => {
 
 function Detailview({ post }) {
   const router = useRouter();
+  const [like, setLike] = useState(false);
 
   const deleteBlog = async () => {
     await deletePost(post._id);
@@ -50,17 +56,31 @@ function Detailview({ post }) {
               className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
             />
           </div>
-          <div className="flex justify-end py-2">
-            <Link href={`/Update/${post._id}`} passHref>
-              <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
-                <EditFilled />
+          <div className="w-full flex justify-between items-center">
+            {like ? (
+              <HeartFilled
+                className="text-red-500 text-xl"
+                onClick={() => setLike(false)}
+              />
+            ) : (
+              <HeartOutlined
+                className="text-xl"
+                onClick={() => setLike(true)}
+              />
+            )}
+
+            <div className="flex justify-end py-2">
+              <Link href={`/Update/${post._id}`} passHref>
+                <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
+                  <EditFilled />
+                </div>
+              </Link>
+              <div
+                onClick={() => deleteBlog()}
+                className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer"
+              >
+                <DeleteFilled />
               </div>
-            </Link>
-            <div
-              onClick={() => deleteBlog()}
-              className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer"
-            >
-              <DeleteFilled />
             </div>
           </div>
           <div className="flex justify-center">
@@ -69,9 +89,11 @@ function Detailview({ post }) {
             </div>
           </div>
           <div className="md:flex block justify-between text-gray-400 text-xs ld:text-sm my-2">
-            <div>
-              Author : <span className="font-bold">{post.username}</span>
-            </div>
+            <Link href={`/?username=${post.username}`} passHref>
+              <div>
+                Author : <span className="font-bold">{post.username}</span>
+              </div>
+            </Link>
             <div>{new Date(post.createDate).toDateString()}</div>
           </div>
           <div className=" my-4 lg:my-8 text-sm md:text-lg">
