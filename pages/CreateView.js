@@ -18,10 +18,10 @@ function CreateView() {
     if (image) {
       const formData = new FormData();
       formData.append("file", image);
-      formData.append("upload_preset", "praveen");
+      formData.append("upload_preset", "dailyBlog");
 
       axios
-        .post("https://api.cloudinary.com/v1_1/di6pzmxin/upload", formData)
+        .post("https://api.cloudinary.com/v1_1/daily-blog/upload", formData)
         .then((response) => {
           setUrl(response.data.url);
           console.log(response.data.url);
@@ -55,8 +55,8 @@ function CreateView() {
             className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
           />
         </div>
-        <div className="flex justify-between py-2">
-          <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
+        <div className="flex justify-between py-2 mx-4">
+          <div className="md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
             <label htmlFor="fileInput">
               <PlusCircleFilled />
               <input
