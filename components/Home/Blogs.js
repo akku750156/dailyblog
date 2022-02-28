@@ -11,7 +11,7 @@ function Blogs({ posts }) {
         posts.map((post) => {
           return (
             <Link href={`/Detail/${post._id}`} key={post._id} passHref>
-              <div className="lg:w-5/12 border-2 border-gray-700 md:mx-8 my-4 w-full rounded-xl">
+              <div className="lg:w-5/12 border-2 border-gray-700 md:mx-8 my-4 w-full rounded-xl cursor-pointer">
                 <Blog post={post} />
               </div>
             </Link>

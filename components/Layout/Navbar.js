@@ -13,7 +13,7 @@ function Navbar() {
     <nav className="fixed top-0 z-50 bg-gradient-to-b from-black to-transparent h-20 w-full flex justify-center items-center flex-col">
       <div className="w-10/12 flex items-center justify-between h-full">
         <Link href="/" passHref>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 cursor-pointer">
             <Image
               src="/blog-logo-1.png"
               height={30}

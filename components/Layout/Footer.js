@@ -22,7 +22,12 @@ const Footer = () => {
             <div>
               <h1 className="font-bold md:mb-2">Follow Us</h1>
               <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                <a className=" border-2 border-yellow-200 p-2 rounded-full text-blue-500">
+                <a
+                  href="https://www.facebook.com/profile.php?id=100037184014722"
+                  target="_blank"
+                  className=" border-2 border-yellow-200 p-2 rounded-full text-blue-500 cursor-pointer"
+                  rel="noreferrer"
+                >
                   <svg
                     fill="currentColor"
                     strokeLinecap="round"
@@ -34,7 +39,7 @@ const Footer = () => {
                     <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                   </svg>
                 </a>
-                <a className="ml-3  border-2 border-yellow-200 p-2 rounded-full text-blue-300">
+                <a className="ml-3  border-2 border-yellow-200 p-2 rounded-full text-blue-300 cursor-pointer">
                   <svg
                     fill="currentColor"
                     strokeLinecap="round"
@@ -46,7 +51,12 @@ const Footer = () => {
                     <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
                   </svg>
                 </a>
-                <a className="ml-3  border-2 border-yellow-200 p-2 rounded-full text-red-400">
+                <a
+                  href="https://www.instagram.com/__s.k.yyy__/"
+                  target="_blank"
+                  className="ml-3  border-2 border-yellow-200 p-2 rounded-full text-red-400 cursor-pointer"
+                  rel="noreferrer"
+                >
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -67,7 +77,12 @@ const Footer = () => {
                     <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                   </svg>
                 </a>
-                <a className="ml-3 border-2 border-yellow-200 p-2 rounded-full text-blue-400">
+                <a
+                  href="https://www.linkedin.com/in/akash-tiwari-03b3621b7/"
+                  target="_blank"
+                  className="ml-3 border-2 border-yellow-200 p-2 rounded-full text-blue-400 cursor-pointer"
+                  rel="noreferrer"
+                >
                   <svg
                     fill="currentColor"
                     stroke="currentColor"
