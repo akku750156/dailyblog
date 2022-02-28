@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+
 import {
   EditFilled,
   DeleteFilled,
@@ -49,15 +51,17 @@ function Detailview({ post }) {
     <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
       {post ? (
         <>
-          <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 ">
+          <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 relative">
             {post.picture ? (
-              <img
+              <Image
+                layout="fill"
                 src={post.picture}
                 alt="Image"
                 className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
               />
             ) : (
-              <img
+              <Image
+                layout="fill"
                 src="/blogImage.jpeg"
                 alt="Image"
                 className=" w-full h-full object-cover shadow-2xl shadow-gray-700"

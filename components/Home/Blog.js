@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 function Blog({ post }) {
   const url =
@@ -7,11 +8,12 @@ function Blog({ post }) {
 
   return (
     <div className="flex flex-col justify-center items-start w-full p-4">
-      <div className="w-full lg:h-72 md:h-60 sm:h-48 h-32 mb-4 ">
-        <img
+      <div className="w-full lg:h-72 md:h-60 sm:h-48 h-32 mb-4 relative">
+        <Image
+          layout="fill"
           src={url}
           alt=""
-          className="rounded-2xl drop-shadow-xl w-full h-full object-cover"
+          className="rounded-2xl drop-shadow-xl"
         />
       </div>
       <div className="text-gray-500 text-sm">{post.categories}</div>
