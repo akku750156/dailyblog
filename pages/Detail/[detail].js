@@ -24,7 +24,6 @@ export const getStaticProps = async (context) => {
     revalidate: 10,
   };
 };
-
 export const getStaticPaths = async () => {
   const res = await fetch("https://dailyblog-server.herokuapp.com/posts");
   const data = await res.json();
