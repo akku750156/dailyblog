@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PlusCircleFilled } from "@ant-design/icons";
 import { updatePost } from "../api/api";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Head from "next/head";
 
 export const getStaticProps = async (context) => {
@@ -63,8 +64,9 @@ function UpdateView({ post }) {
         <link rel="icon" href="/blog-logo-1.png" className="text-white" />
       </Head>
       <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
-        <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 ">
-          <img
+        <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 relative">
+          <Image
+            layout="fill"
             src="/blogImage4.jpg"
             alt=""
             className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
