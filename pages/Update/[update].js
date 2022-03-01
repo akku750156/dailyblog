@@ -27,7 +27,7 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -37,6 +37,9 @@ function UpdateView({ post }) {
 
   const router = useRouter();
 
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   const updateBlog = async () => {
     const payload = {
       title: title,
