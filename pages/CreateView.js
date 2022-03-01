@@ -77,7 +77,7 @@ function CreateView() {
               <option value="Movies">Movies</option>
               <option value="Music">Music</option>
               <option value="Sports">Sports</option>
-              <option value="Technology">Technollogy</option>
+              <option value="Technology">Technology</option>
               <option value="Fashion">Fashion</option>
             </select>
           </div>
