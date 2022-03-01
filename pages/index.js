@@ -37,7 +37,7 @@ export default function HomePage({ posts }) {
   return (
     <main>
       <Head>
-        <title>dailyBlog</title>
+        <title>Daily Blog</title>
       </Head>
 
       <Home posts={posts} />
