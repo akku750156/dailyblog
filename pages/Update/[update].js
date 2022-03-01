@@ -12,7 +12,7 @@ export const getStaticProps = async (context) => {
 
   return {
     props: { post: newData },
-    revalidate: 10,
+    revalidate: 1,
   };
 };
 
@@ -26,7 +26,7 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -42,6 +42,11 @@ function UpdateView({ post }) {
 
   const router = useRouter();
   const [blog, setBlog] = useState(initialValues);
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   const handleChange = (e) => {
     console.log({ [e.target.name]: e.target.value });
     setBlog({ ...blog, [e.target.name]: e.target.value });
