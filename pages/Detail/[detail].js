@@ -34,13 +34,17 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
 function Detailview({ post }) {
   const router = useRouter();
   const [like, setLike] = useState(false);
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   const deleteBlog = async () => {
     await deletePost(post._id);
