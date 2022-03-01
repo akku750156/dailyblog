@@ -27,33 +27,27 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
 function UpdateView({ post }) {
-  const initialValues = {
-    title: post.title,
-    description: post.description,
-    picture: post.picture,
-    username: post.username,
-    categories: post.categories,
-    createDate: new Date(),
-  };
+  const [title, setTitle] = useState(post.title);
+  const [description, setDescription] = useState(post.description);
 
   const router = useRouter();
-  const [blog, setBlog] = useState(initialValues);
 
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  const updateBlog = async () => {
+    const payload = {
+      title: title,
+      description: description,
+      picture: post.picture,
+      username: post.username,
+      categories: post.categories,
+      createDate: new Date(),
+    };
 
-  const handleChange = (e) => {
-    console.log({ [e.target.name]: e.target.value });
-    setBlog({ ...blog, [e.target.name]: e.target.value });
-  };
-  const updateBlog = async (blog) => {
-    await updatePost(post._id, blog);
+    await updatePost(post._id, payload);
     router.push(`/Detail/${post._id}`);
   };
   return (
@@ -80,23 +74,23 @@ function UpdateView({ post }) {
         <div className="flex justify-center">
           <input
             className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300 bg-black outline-none"
-            value={blog.title}
+            value={title}
             name="title"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className=" my-4 lg:my-8 text-sm md:text-lg">
           <textarea
             className="w-full h-48 bg-gray-800 resize-none text-sm p-2 focus:outline-none"
-            value={blog.description}
+            value={description}
             name="description"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="flex justify-end">
           <button
             onClick={() => {
-              updateBlog(blog);
+              updateBlog();
             }}
             className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out"
           >
