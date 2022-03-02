@@ -29,7 +29,7 @@ export const getStaticPaths = async () => {
   console.log("paths", paths);
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -39,6 +39,10 @@ function UpdateView({ post }) {
   const [title, setTitle] = useState(post.title);
   const [description, setDescription] = useState(post.description);
   const [photo, setPhoto] = useState(post.picture);
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   const uploadImage = (image) => {
     if (image) {
