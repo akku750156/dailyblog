@@ -40,6 +40,7 @@ function CreateView() {
       categories: categories,
       createDate: createDate,
     };
+
     await createPost(payload);
     router.push("/");
   };
