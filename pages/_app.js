@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="text-white bg-black min-h-screen">
+    <div className="text-white  min-h-screen">
       <Layout>
         <Component {...pageProps} />
       </Layout>

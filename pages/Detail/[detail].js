@@ -32,6 +32,7 @@ export const getStaticPaths = async () => {
       params: { detail: post._id },
     };
   });
+  console.log("paths", paths);
   return {
     paths,
     fallback: true,

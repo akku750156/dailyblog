@@ -25,9 +25,10 @@ export const getStaticPaths = async () => {
       params: { update: blog._id },
     };
   });
+  console.log("paths", paths);
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -36,6 +37,9 @@ function UpdateView({ post }) {
   const [description, setDescription] = useState(post.description);
 
   const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   const updateBlog = async () => {
     const payload = {
