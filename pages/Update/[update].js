@@ -4,6 +4,7 @@ import { updatePost } from "../api/api";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
+import axios from "axios";
 
 export const getStaticProps = async (context) => {
   const id = context.params.update;
@@ -33,14 +34,32 @@ export const getStaticPaths = async () => {
 };
 
 function UpdateView({ post }) {
+  const router = useRouter();
+
   const [title, setTitle] = useState(post.title);
   const [description, setDescription] = useState(post.description);
+  const [photo, setPhoto] = useState(post.picture);
+
+  const uploadImage = (image) => {
+    if (image) {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "dailyBlog");
+
+      axios
+        .post("https://api.cloudinary.com/v1_1/daily-blog/upload", formData)
+        .then((response) => {
+          setPhoto(response.data.url);
+          console.log(response.data.url);
+        });
+    }
+  };
 
   const updateBlog = async () => {
     const payload = {
       title: title,
       description: description,
-      picture: post.picture,
+      picture: photo,
       username: post.username,
       categories: post.categories,
       createDate: new Date(),
@@ -49,6 +68,9 @@ function UpdateView({ post }) {
     await updatePost(post._id, payload);
     router.push(`/Detail/${post._id}`);
   };
+
+  const url = photo || "/blogImage4.jpg";
+
   return (
     <div>
       <Head>
@@ -60,14 +82,22 @@ function UpdateView({ post }) {
         <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 relative">
           <Image
             layout="fill"
-            src="/blogImage4.jpg"
-            alt=""
+            src={url}
+            alt="Image"
             className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
           />
         </div>
         <div className="flex justify-start py-2">
           <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
-            <PlusCircleFilled />
+            <label htmlFor="fileInput">
+              <PlusCircleFilled />
+              <input
+                type="file"
+                id="fileInput"
+                style={{ display: "none" }}
+                onChange={(e) => uploadImage(e.target.files[0])}
+              />
+            </label>
           </div>
         </div>
         <div className="flex justify-center">
