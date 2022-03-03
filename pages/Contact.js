@@ -5,7 +5,7 @@ function Contact() {
     <header className="min-h-screen w-full mt-24">
       <div className="flex justify-center items-center">
         <div className="flex lg:flex-row flex-col justify-around items-center">
-          <div className="w-[2/3] sm:mx-16">
+          <div className=" sm:mx-16">
             <div className="my-20 font-semibold lg:font-bold text-6xl sm:text-7xl md:text-8xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-purple-700 text-center">
               We&apos;re all ears
             </div>
@@ -14,7 +14,7 @@ function Contact() {
                 <input
                   type="text"
                   name="name"
-                  className="sm:w-10/12 sm:p-4 p-2 bg-gray-800 border-2 border-gray-500 rounded-xl hover:border-white"
+                  className="sm:w-10/12 w-full sm:p-4 p-2 bg-gray-800 border border-gray-500 rounded-xl hover:border-white"
                   placeholder="Full Name"
                 />
               </div>
@@ -22,15 +22,15 @@ function Contact() {
                 <input
                   type="email"
                   name="email"
-                  className="sm:w-10/12 sm:p-4 p-2 bg-gray-800 border-2 border-gray-500 rounded-xl hover:border-white"
+                  className="sm:w-10/12 w-full sm:p-4 p-2 bg-gray-800 border border-gray-500 rounded-xl hover:border-white"
                   placeholder="Your Email"
                 />
               </div>
-              <div className="mb-8 w-full flex justify-center items-center">
+              <div className="sm:mb-8 mb-4 w-full flex justify-center items-center">
                 <textarea
                   type="text"
                   name="message"
-                  className="resize-none sm:w-10/12 sm:p-4 p-2 h-56 bg-gray-800 border-2 border-gray-500 rounded-xl hover:border-white"
+                  className="sm:w-10/12 w-full sm:p-4 p-2 h-48 bg-gray-800 border border-gray-500 rounded-xl hover:border-white"
                   placeholder="Message"
                 />
               </div>
@@ -41,12 +41,12 @@ function Contact() {
               </div>
             </div>
           </div>
-          <div className="object-cover relative w-[220px] h-[220px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] mr-4 sm:mt-0">
+          <div className="relative w-[220px] h-[220px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] mr-4 sm:mt-0">
             <Image
               layout="fill"
               src="/illus5.png"
               alt="Image"
-              className="w-full h-full object-cover "
+              className="w-full h-full object-contain "
             />
           </div>
         </div>
