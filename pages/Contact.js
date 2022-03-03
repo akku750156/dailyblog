@@ -30,7 +30,7 @@ function Contact() {
                 <textarea
                   type="text"
                   name="message"
-                  className="sm:w-10/12 sm:p-4 p-2 h-56 bg-gray-800 border-2 border-gray-500 rounded-xl hover:border-white"
+                  className="resize-none sm:w-10/12 sm:p-4 p-2 h-56 bg-gray-800 border-2 border-gray-500 rounded-xl hover:border-white"
                   placeholder="Message"
                 />
               </div>
