@@ -7,7 +7,7 @@ function Contact() {
         <div className="flex lg:flex-row flex-col justify-around items-center">
           <div className="w-[2/3] sm:mx-16">
             <div className="my-20 font-semibold lg:font-bold text-6xl sm:text-7xl md:text-8xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-purple-700 text-center">
-              We're all ears
+              We&apos;re all ears
             </div>
             <div className="w-full flex flex-col justify-center items-center">
               <div className="sm:mb-8 mb-4 w-full flex justify-center items-center">
