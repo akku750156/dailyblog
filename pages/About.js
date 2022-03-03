@@ -18,10 +18,10 @@ function About() {
               />
             </div>
             <div className="sm:w-1/2">
-              <div className="mt-12 lg:mt-28 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-500">
+              <div className="my-8 lg:mt-28 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-500">
                 Staying up-to-date takes a lot of effort and time
               </div>
-              <div className="text-md sm:text-lg md:text-xl lg:text-2xl  text-gray-400 ">
+              <div className="text-md sm:text-lg md:text-xl lg:text-2xl  text-gray-400 my-12">
                 <div className="mb-4">
                   1. It is essential for every creator, to share their
                   creativity and ideas to a wider audience

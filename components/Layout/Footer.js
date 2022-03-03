@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="flex items-center gap-6">
             <i className="fa-solid fa-headset text-5xl"></i>
             <div>
-              <h1 className="font-bold">Blogger Support</h1>
+              <h1 className="font-bold my-4">Blogger Support</h1>
               <p className="text-gray-400 text-sm">
                 blogger.support@dailyblog.io
               </p>
@@ -112,7 +112,7 @@ const Footer = () => {
           </div> */}
         </div>
       </section>
-      <footer className="text-gray-600 body-font flex justify-center flex-col items-center mb-20 lg:mb-0">
+      <footer className="text-gray-600 body-font flex justify-center flex-col items-center mb-16 lg:mb-0">
         <div className="w-10/12">
           <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
