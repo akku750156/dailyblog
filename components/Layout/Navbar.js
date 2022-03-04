@@ -44,7 +44,7 @@ function Navbar() {
               <h1 className="text-md font-light">About</h1>
             </div>
           </Link>
-          <Link href="/About" passHref>
+          <Link href="/SignUpPage" passHref>
             <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
               <LoginOutlined />
               <h1 className="text-md font-light">Login</h1>
