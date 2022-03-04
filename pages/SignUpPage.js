@@ -21,7 +21,7 @@ function SignUpPage() {
           </div>
         </div>
         <div className="flex lg:flex-row flex-col justify-center items-center w-full">
-          <div className="lg:w-5/12 sm:w-7/12 w-11/12  shadow-[0px_0px_50px_20px_rgba(253,255,255,0.2)] px-12 py-12 m-16 rounded-sm">
+          <div className="lg:w-5/12 sm:w-7/12 w-11/12  shadow-[0px_0px_100px_40px_rgba(253,255,255,0.1)] px-12 py-12 m-16 rounded-sm">
             <div className="w-full flex flex-col justify-center items-center">
               <div className="my-4">
                 <div className="w-full text-yellow-300 text-2xl">
