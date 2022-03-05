@@ -2,9 +2,19 @@ import Head from "next/head";
 import Home from "../components/Home";
 import { useSession } from "next-auth/react";
 
-export const getServerSideProps = async ({ query }) => {
-  const username = query.username;
-  const category = query.category;
+export const getServerSideProps = async (context) => {
+  const username = context.query.username;
+  const category = context.query.category;
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
 
   let data = [];
   let newData = [];
@@ -30,7 +40,7 @@ export const getServerSideProps = async ({ query }) => {
   }
 
   return {
-    props: { posts: newData },
+    props: { posts: newData, session },
   };
 };
 

@@ -53,7 +53,6 @@ function SignUpPage() {
       });
 
       if (!result.error) {
-        // set some auth state
         router.push("/");
       }
     } else {
