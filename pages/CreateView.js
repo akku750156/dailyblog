@@ -9,10 +9,10 @@ import { useSession } from "next-auth/react";
 
 function CreateView() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
-  const [username] = useState(session.user.username);
+  const [username] = useState(session ? session.user.username : "");
   const [categories, setCategories] = useState();
   const [createDate] = useState(new Date());
   const [url, setUrl] = useState("/blogImage2.png");
@@ -45,6 +45,35 @@ function CreateView() {
     await createPost(payload);
     router.push("/");
   };
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "unauthenticated") {
+    return (
+      <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
+        <div className="flex lg:flex-row flex-col justify-center items-center">
+          <div className="flex flex-col justify-center w-full items-center text-6xl font-bold mx-12">
+            <div className="py-4 font-semibold lg:font-bold text-5xl sm:text-6xl md:text-7xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-br from-red-500 to-purple-700">
+              401
+            </div>
+            <div className="py-4 text-center font-semibold lg:font-bold text-5xl sm:text-6xl md:text-7xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-br from-red-500 to-purple-700">
+              Access Denied !
+            </div>
+          </div>
+          <div className="relative w-[250px] h-[250px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px] mr-4 sm:mt-0">
+            <Image
+              layout="fill"
+              src="/404.png"
+              alt="Image"
+              className="w-full h-full object-contain "
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
