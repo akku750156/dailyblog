@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Home from "../components/Home";
-import { useSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 
 export const getServerSideProps = async (context) => {
   const username = context.query.username;
