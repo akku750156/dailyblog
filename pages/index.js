@@ -1,20 +1,9 @@
 import Head from "next/head";
 import Home from "../components/Home";
-import { useSession, getSession } from "next-auth/react";
 
 export const getServerSideProps = async (context) => {
   const username = context.query.username;
   const category = context.query.category;
-  const session = await getSession({ req: context.req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
 
   let data = [];
   let newData = [];
@@ -40,14 +29,11 @@ export const getServerSideProps = async (context) => {
   }
 
   return {
-    props: { posts: newData, session },
+    props: { posts: newData },
   };
 };
 
 export default function HomePage({ posts }) {
-  const { data: session } = useSession();
-  console.log(session);
-
   return (
     <main>
       <Head>
