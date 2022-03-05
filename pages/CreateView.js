@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 function CreateView() {
   const router = useRouter();
-
+  const { data: session } = useSession();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
-  const [username] = useState("akku750156");
+  const [username] = useState(session.user.username);
   const [categories, setCategories] = useState();
   const [createDate] = useState(new Date());
   const [url, setUrl] = useState("/blogImage2.png");

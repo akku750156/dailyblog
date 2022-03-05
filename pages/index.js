@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Home from "../components/Home";
+import { useSession } from "next-auth/react";
 
 export const getServerSideProps = async ({ query }) => {
   const username = query.username;
@@ -34,6 +35,9 @@ export const getServerSideProps = async ({ query }) => {
 };
 
 export default function HomePage({ posts }) {
+  const { data: session } = useSession();
+  console.log(session);
+
   return (
     <main>
       <Head>

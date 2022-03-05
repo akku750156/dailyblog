@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-
+import { useSession } from "next-auth/react";
 import {
   EditFilled,
   DeleteFilled,
@@ -40,6 +40,7 @@ export const getStaticPaths = async () => {
 };
 
 function Detailview({ post }) {
+  const { data: session } = useSession();
   const router = useRouter();
   const [like, setLike] = useState(false);
 
@@ -90,20 +91,21 @@ function Detailview({ post }) {
                 onClick={() => setLike(true)}
               />
             )}
-
-            <div className="flex justify-end py-2">
-              <Link href={`/Update/${post._id}`} passHref>
-                <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
-                  <EditFilled />
+            {session && session.user.username === post.username && (
+              <div className="flex justify-end py-2">
+                <Link href={`/Update/${post._id}`} passHref>
+                  <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
+                    <EditFilled />
+                  </div>
+                </Link>
+                <div
+                  onClick={() => deleteBlog()}
+                  className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer"
+                >
+                  <DeleteFilled />
                 </div>
-              </Link>
-              <div
-                onClick={() => deleteBlog()}
-                className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer"
-              >
-                <DeleteFilled />
               </div>
-            </div>
+            )}
           </div>
           <div className="flex justify-center">
             <div className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300">

@@ -1,11 +1,71 @@
 import Head from "next/head";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 function SignUpPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const [login, setLogin] = useState(false);
+  const [name, setName] = useState();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const router = useRouter();
+
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        router.replace("/");
+      } else {
+        setIsLoading(false);
+      }
+    });
+  });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  const createUser = async (username, password) => {
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Something went wrong!");
+    }
+
+    return data;
+  };
+
+  const submitHandle = async (username, password) => {
+    if (login) {
+      const result = await signIn("credentials", {
+        redirect: false,
+        username: username,
+        password: password,
+      });
+
+      if (!result.error) {
+        // set some auth state
+        router.push("/");
+      }
+    } else {
+      try {
+        const result = await createUser(username, password);
+        console.log(result);
+        router.push("/SignUpPage");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <div>
@@ -36,6 +96,7 @@ function SignUpPage() {
                   <input
                     type="text"
                     name="name"
+                    onChange={(e) => setName(e.target.value)}
                     className="w-full  px-4 py-1 rounded-md bg-gray-800 outline-none"
                   />
                 </div>
@@ -46,6 +107,7 @@ function SignUpPage() {
                 <input
                   type="text"
                   name="username"
+                  onChange={(e) => setUsername(e.target.value)}
                   className="w-full  px-4 py-1 rounded-md bg-gray-800 outline-none"
                 />
               </div>
@@ -54,11 +116,15 @@ function SignUpPage() {
                 <input
                   type="password"
                   name="password"
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-1 rounded-md bg-gray-800 outline-none"
                 />
               </div>
               <div className="w-full bg-yellow-300 p-1 my-4 text-gray-700 flex justify-center items-center rounded-md ">
-                <button className="font-light text-xl">
+                <button
+                  className="font-light text-xl"
+                  onClick={() => submitHandle(username, password)}
+                >
                   {login ? "Welcome Back" : "Welcome to Community"}
                 </button>
               </div>
