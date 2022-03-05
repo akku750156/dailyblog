@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { route } from "next/dist/server/router";
 
 function SignUpPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,12 +17,12 @@ function SignUpPage() {
   useEffect(() => {
     getSession().then((session) => {
       if (session) {
-        router.replace("/");
+        router.push("/");
       } else {
         setIsLoading(false);
       }
     });
-  });
+  }, [router]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -58,7 +59,7 @@ function SignUpPage() {
     } else {
       try {
         const result = await createUser(username, password);
-        console.log(result);
+        console.log("result", result);
         router.push("/SignUpPage");
       } catch (error) {
         console.log(error);

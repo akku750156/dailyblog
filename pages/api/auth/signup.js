@@ -18,7 +18,7 @@ async function handler(req, res) {
     return;
   }
 
-  const client = await MongoClient.connect(process.env.NEXT_PUBLIC_MONGO_URI, {
+  const client = await MongoClient.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

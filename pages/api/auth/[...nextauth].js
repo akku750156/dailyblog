@@ -10,13 +10,10 @@ export default NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
-        const client = await MongoClient.connect(
-          process.env.NEXT_PUBLIC_MONGO_URI,
-          {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-          }
-        );
+        const client = await MongoClient.connect(process.env.MONGO_URI, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        });
 
         const usersCollection = client.db().collection("users");
 
