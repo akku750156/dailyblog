@@ -60,7 +60,7 @@ function SignUpPage() {
       try {
         const result = await createUser(username, password);
         console.log("result", result);
-        router.push("/SignUpPage");
+        router.push("/");
       } catch (error) {
         console.log(error);
       }
