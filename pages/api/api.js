@@ -34,3 +34,17 @@ export const deletePost = async (id) => {
     console.log("Error while calling deletePost API", error);
   }
 };
+
+export const addCommentPost = async (id, comment) => {
+  if (!comment) {
+    console.log("Comment to addCommnetPost tk hi nhi pahucha");
+  }
+  try {
+    await axios.post(`${URL}/comment/${id}`, {
+      comment: comment,
+      created: Date.now(),
+    });
+  } catch (error) {
+    console.log("Error while calling addCommentPost API", error);
+  }
+};

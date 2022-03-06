@@ -8,10 +8,11 @@ import {
   DeleteFilled,
   HeartFilled,
   HeartOutlined,
+  ArrowRightOutlined,
 } from "@ant-design/icons";
 import { Spin } from "antd";
 import { useRouter } from "next/router";
-import { deletePost } from "../api/api";
+import { deletePost, addCommentPost } from "../api/api";
 
 export const getStaticProps = async (context) => {
   const id = context.params.detail;
@@ -43,6 +44,7 @@ function Detailview({ post }) {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [like, setLike] = useState(false);
+  const [comment, setComment] = useState();
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -51,6 +53,10 @@ function Detailview({ post }) {
   const deleteBlog = async () => {
     await deletePost(post._id);
     router.push("/");
+  };
+
+  const addCommentBlog = async (comment) => {
+    await addCommentPost(post._id, comment);
   };
 
   return (
@@ -112,7 +118,7 @@ function Detailview({ post }) {
               {post.title}
             </div>
           </div>
-          <div className="md:flex block justify-between text-gray-400 text-xs ld:text-sm my-2">
+          <div className="md:flex block justify-between text-gray-400 text-xs lg:text-sm my-2">
             <Link href={`/?username=${post.username}`} passHref>
               <div>
                 Author : <span className="font-bold">{post.username}</span>
@@ -122,6 +128,44 @@ function Detailview({ post }) {
           </div>
           <div className=" my-4 lg:my-8 text-sm md:text-lg">
             <div>{post.description}</div>
+          </div>
+          <div className="mt-20 w-full ">
+            <div>Comments</div>
+            <div className="w-full flex justify-center items-center">
+              <input
+                type="text"
+                placeholder="Comments"
+                name="comment"
+                className="w-full px-1 rounded-sm text-black"
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <button
+                type="submit"
+                className=" flex justify-center items-center mx-4"
+                onClick={() => addCommentBlog(comment)}
+              >
+                <ArrowRightOutlined />
+              </button>
+            </div>
+            <div className="mt-12">
+              {post.comments
+                .slice(0)
+                .reverse()
+                .map((element) => (
+                  <>
+                    <div
+                      className="flex justify-between items-center m-2"
+                      key={element._id}
+                    >
+                      <div className="w-10/12">{element.comment}</div>
+                      <div className="text-gray-400 text-xs lg:text-sm border-l pl-4">
+                        {new Date(element.created).toDateString()}
+                      </div>
+                    </div>
+                    <hr className="border-t border-gray-600 " />
+                  </>
+                ))}
+            </div>
           </div>
         </>
       ) : (
