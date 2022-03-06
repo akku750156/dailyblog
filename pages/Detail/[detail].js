@@ -57,6 +57,7 @@ function Detailview({ post }) {
 
   const addCommentBlog = async (comment) => {
     await addCommentPost(post._id, comment);
+    router.push(`/Detail/${post._id}`);
   };
 
   return (
