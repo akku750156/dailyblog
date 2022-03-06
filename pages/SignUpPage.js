@@ -123,7 +123,7 @@ function SignUpPage() {
               <div className="w-full bg-yellow-300 p-1 my-4 text-gray-700 flex justify-center items-center rounded-md ">
                 <button
                   className="font-light text-xl"
-                  onClick={() => submitHandle(username, password)}
+                  // onClick={() => submitHandle(username, password)}
                 >
                   {login ? "Welcome Back" : "Welcome to Community"}
                 </button>

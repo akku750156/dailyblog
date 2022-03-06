@@ -17,15 +17,15 @@ function Homebanner() {
           <span className="text-yellow-300">CREATE-WRITE-PUBLISH</span>
         </div>
       </div>
-      {session && (
-        <div>
-          <Link href="/CreateView" passHref>
-            <button className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out">
-              Create BLOG
-            </button>
-          </Link>
-        </div>
-      )}
+      {/* {session && ( */}
+      <div>
+        <Link href="/CreateView" passHref>
+          <button className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out">
+            Create BLOG
+          </button>
+        </Link>
+      </div>
+      {/* )} */}
     </div>
   );
 }

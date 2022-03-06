@@ -97,21 +97,21 @@ function Detailview({ post }) {
                 onClick={() => setLike(true)}
               />
             )}
-            {session && session.user.username === post.username && (
-              <div className="flex justify-end py-2">
-                <Link href={`/Update/${post._id}`} passHref>
-                  <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
-                    <EditFilled />
-                  </div>
-                </Link>
-                <div
-                  onClick={() => deleteBlog()}
-                  className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer"
-                >
-                  <DeleteFilled />
+            {/* {session && session.user.username === post.username && ( */}
+            <div className="flex justify-end py-2">
+              <Link href={`/Update/${post._id}`} passHref>
+                <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
+                  <EditFilled />
                 </div>
+              </Link>
+              <div
+                onClick={() => deleteBlog()}
+                className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer"
+              >
+                <DeleteFilled />
               </div>
-            )}
+            </div>
+            {/* )} */}
           </div>
           <div className="flex justify-center">
             <div className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300">
