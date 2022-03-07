@@ -8,9 +8,10 @@ import {
   DeleteFilled,
   HeartFilled,
   HeartOutlined,
-  ArrowRightOutlined,
+  CommentOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import { Spin } from "antd";
+import { Spin, Avatar } from "antd";
 import { useRouter } from "next/router";
 import { deletePost, addCommentPost } from "../api/api";
 
@@ -57,6 +58,7 @@ function Detailview({ post }) {
 
   const addCommentBlog = async (comment) => {
     await addCommentPost(post._id, comment);
+    setComment("");
     router.push(`/Detail/${post._id}`);
   };
 
@@ -130,22 +132,24 @@ function Detailview({ post }) {
           <div className=" my-4 lg:my-8 text-sm md:text-lg">
             <div>{post.description}</div>
           </div>
-          <div className="mt-20 w-full ">
-            <div>Comments</div>
+          <div className="mt-28 w-full ">
             <div className="w-full flex justify-center items-center">
+              <div className="flex justify-center items-center mr-4 text-xl">
+                <CommentOutlined />
+              </div>
               <input
                 type="text"
-                placeholder="Comments"
+                placeholder="Add a comment"
                 name="comment"
                 className="w-full px-1 rounded-sm text-black"
                 onChange={(e) => setComment(e.target.value)}
               />
               <button
                 type="submit"
-                className=" flex justify-center items-center mx-4"
+                className=" flex justify-center items-center mx-4 bg-yellow-300 text-black px-2 rounded-md cursor-pointer"
                 onClick={() => addCommentBlog(comment)}
               >
-                <ArrowRightOutlined />
+                Post
               </button>
             </div>
             <div className="mt-12">
@@ -155,15 +159,19 @@ function Detailview({ post }) {
                 .map((element) => (
                   <>
                     <div
-                      className="flex justify-between items-center m-2"
+                      className="flex justify-between items-center m-1"
                       key={element._id}
                     >
-                      <div className="w-10/12">{element.comment}</div>
-                      <div className="text-gray-400 text-xs lg:text-sm border-l pl-4">
+                      <div className="w-9/12 lg:text-sm text-xs flex  items-start my-1 lg:my-2">
+                        <div className="text-gray-400">
+                          {post.username}:&nbsp;
+                        </div>
+                        <div>{element.comment}</div>
+                      </div>
+                      <div className="text-gray-400 text-[10px] lg:text-xs  pl-2">
                         {new Date(element.created).toDateString()}
                       </div>
                     </div>
-                    <hr className="border-t border-gray-600 " />
                   </>
                 ))}
             </div>
