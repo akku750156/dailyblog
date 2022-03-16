@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { route } from "next/dist/server/router";
+import { newUser, checkUser } from "../pages/api/api";
 
 function SignUpPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,43 +28,26 @@ function SignUpPage() {
     return <p>Loading...</p>;
   }
 
-  const createUser = async (username, password) => {
-    const response = await fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
+  const addUser = async () => {
+    const payload = {
+      name: name,
+      username: username,
+      password: password,
+    };
 
-    if (!response.ok) {
-      throw new Error(data.message || "Something went wrong!");
-    }
-
-    return data;
+    await newUser(payload);
+    setUsername("");
+    setPassword("");
+    setLogin(true);
   };
 
-  const submitHandle = async (username, password) => {
-    if (login) {
-      const result = await signIn("credentials", {
-        redirect: false,
-        username: username,
-        password: password,
-      });
-
-      if (!result.error) {
-        router.push("/");
-      }
-    } else {
-      try {
-        const result = await createUser(username, password);
-        console.log("result", result);
-        router.push("/");
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  const authenticateUser = async () => {
+    const payload = {
+      username: username,
+      password: password,
+    };
+    await checkUser(payload);
+    router.push("/");
   };
 
   return (
@@ -120,10 +103,11 @@ function SignUpPage() {
                   className="w-full px-4 py-1 rounded-md bg-gray-800 outline-none"
                 />
               </div>
+
               <div className="w-full bg-yellow-300 p-1 my-4 text-gray-700 flex justify-center items-center rounded-md ">
                 <button
                   className="font-light text-xl"
-                  // onClick={() => submitHandle(username, password)}
+                  onClick={() => (login ? authenticateUser() : addUser())}
                 >
                   {login ? "Welcome Back" : "Welcome to Community"}
                 </button>

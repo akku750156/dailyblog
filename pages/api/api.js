@@ -10,6 +10,22 @@ export const createPost = async (post) => {
   }
 };
 
+export const newUser = async (user) => {
+  try {
+    await axios.post(`http://localhost:3002/signup`, user);
+  } catch (error) {
+    console.log("Error in newUser API", error);
+  }
+};
+
+export const checkUser = async (user) => {
+  try {
+    await axios.post(`http://localhost:3002/login`, user);
+  } catch (error) {
+    console.log("Error in newUser API", error);
+  }
+};
+
 export const getAllPosts = async () => {
   try {
     let res = await axios.get(`${URL}/posts`);

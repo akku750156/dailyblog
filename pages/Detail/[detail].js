@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -9,7 +9,6 @@ import {
   HeartFilled,
   HeartOutlined,
   CommentOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { Spin, Avatar } from "antd";
 import { useRouter } from "next/router";
@@ -127,7 +126,12 @@ function Detailview({ post }) {
                 Author : <span className="font-bold">{post.username}</span>
               </div>
             </Link>
-            <div>{new Date(post.createDate).toDateString()}</div>
+            <div>
+              {new Date(post.createDate).toDateString()} {" at "}
+              {new Date(post.createDate).getHours()}
+              {":"}
+              {new Date(post.createDate).getMinutes()}
+            </div>
           </div>
           <div className=" my-4 lg:my-8 text-sm md:text-lg">
             <div>{post.description}</div>
@@ -170,11 +174,26 @@ function Detailview({ post }) {
                       </div>
                       <div className="text-gray-400 text-[10px] lg:text-xs  pl-2">
                         {new Date(element.created).toDateString()}
+                        {" at "}
+                        {new Date(element.created).getHours() < 10
+                          ? `0${new Date(element.created).getHours()}`
+                          : new Date(element.created).getHours()}
+                        {":"}
+                        {new Date(element.created).getMinutes() < 10
+                          ? `0${new Date(element.created).getMinutes()}`
+                          : new Date(element.created).getMinutes()}
                       </div>
                     </div>
                   </>
                 ))}
             </div>
+            <button
+              className="w-full text-right cursor-pointer
+            "
+              // onClick={(i) => increment(i)}
+            >
+              View More
+            </button>
           </div>
         </>
       ) : (
