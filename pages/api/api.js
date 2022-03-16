@@ -12,7 +12,7 @@ export const createPost = async (post) => {
 
 export const newUser = async (user) => {
   try {
-    await axios.post(`http://localhost:3002/signup`, user);
+    await axios.post(`${URL}/signup`, user);
   } catch (error) {
     console.log("Error in newUser API", error);
   }
@@ -20,7 +20,7 @@ export const newUser = async (user) => {
 
 export const checkUser = async (user) => {
   try {
-    await axios.post(`http://localhost:3002/login`, user);
+    await axios.post(`${URL}/login`, user);
   } catch (error) {
     console.log("Error in newUser API", error);
   }
