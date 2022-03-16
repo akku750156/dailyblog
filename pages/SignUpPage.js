@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { newUser, checkUser } from "../pages/api/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUpPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +30,8 @@ function SignUpPage() {
     return <p>Loading...</p>;
   }
 
+  const notify = () => toast("Login Error");
+
   const addUser = async () => {
     const payload = {
       name: name,
@@ -46,8 +50,10 @@ function SignUpPage() {
       username: username,
       password: password,
     };
-    await checkUser(payload);
-    router.push("/");
+    const response = await checkUser(payload);
+    if (response) {
+      router.push("/");
+    }
   };
 
   return (
