@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
 import {
   HomeOutlined,
   PhoneOutlined,
@@ -10,8 +9,6 @@ import {
 } from "@ant-design/icons";
 
 function Navbar() {
-  const { data: session } = useSession();
-
   return (
     <nav className="fixed top-0 z-50 bg-gradient-to-b from-black to-transparent h-20 w-full flex justify-center items-center flex-col">
       <div className="w-10/12 flex items-center justify-between h-full">
@@ -48,21 +45,12 @@ function Navbar() {
               <h1 className="text-md font-light">About</h1>
             </div>
           </Link>
-          {!session ? (
-            <Link href="/SignUpPage" passHref>
-              <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
-                <LoginOutlined />
-                <h1 className="text-md font-light">Login</h1>
-              </div>
-            </Link>
-          ) : (
+          <Link href="/SignUpPage" passHref>
             <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
               <LoginOutlined />
-              <button className="text-md font-light" onClick={() => signOut()}>
-                LogOut
-              </button>
+              <h1 className="text-md font-light">Login</h1>
             </div>
-          )}
+          </Link>
         </div>
       </div>
     </nav>

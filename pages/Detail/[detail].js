@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { useSession } from "next-auth/react";
 import {
   EditFilled,
   DeleteFilled,
@@ -10,7 +9,6 @@ import {
   HeartOutlined,
   CommentOutlined,
 } from "@ant-design/icons";
-import { Spin, Avatar } from "antd";
 import { useRouter } from "next/router";
 import { deletePost, addCommentPost } from "../api/api";
 
@@ -41,7 +39,6 @@ export const getStaticPaths = async () => {
 };
 
 function Detailview({ post }) {
-  const { data: session, status } = useSession();
   const router = useRouter();
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState();
@@ -197,9 +194,7 @@ function Detailview({ post }) {
           </div>
         </>
       ) : (
-        <>
-          <Spin size="large" />
-        </>
+        <></>
       )}
     </div>
   );

@@ -1,36 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { getSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import { newUser, checkUser } from "../pages/api/api";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { LoginContext } from "../Helper/Context";
+
 import "react-toastify/dist/ReactToastify.css";
 
 function SignUpPage() {
-  const [isLoading, setIsLoading] = useState(true);
   const [login, setLogin] = useState(false);
   const [name, setName] = useState();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const router = useRouter();
-
-  useEffect(() => {
-    getSession().then((session) => {
-      if (session) {
-        router.push("/");
-      } else {
-        setIsLoading(false);
-      }
-    });
-  }, [router]);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  const notify = () => toast("Login Error");
+  const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   const addUser = async () => {
     const payload = {

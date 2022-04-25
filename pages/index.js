@@ -1,5 +1,7 @@
 import Head from "next/head";
 import Home from "../components/Home";
+import { LoginContext } from "../Helper/Context";
+import { useState } from "react";
 
 export const getServerSideProps = async (context) => {
   const username = context.query.username;
@@ -27,20 +29,22 @@ export const getServerSideProps = async (context) => {
   } catch (error) {
     console.log(error);
   }
-
   return {
     props: { posts: newData },
   };
 };
 
 export default function HomePage({ posts }) {
-  return (
-    <main>
-      <Head>
-        <title>Daily Blog</title>
-      </Head>
+  const [loggedIn, setLoggedIn] = useState(false);
 
-      <Home posts={posts} />
-    </main>
+  return (
+    <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
+      <main>
+        <Head>
+          <title>Daily Blog</title>
+        </Head>
+        <Home posts={posts} />
+      </main>
+    </LoginContext.Provider>
   );
 }

@@ -22,7 +22,7 @@ export const checkUser = async (user) => {
   try {
     const response = await axios.post(`${URL}/login`, user);
     console.log(response.data);
-    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("user", JSON.stringify(response.data));
     return response;
   } catch (error) {
     console.log("Error in newUser API", error);
