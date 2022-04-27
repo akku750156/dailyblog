@@ -3,8 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useContext } from "react";
 import { newUser, checkUser } from "../pages/api/api";
-import { toast } from "react-toastify";
-import { LoginContext } from "../Helper/Context";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,7 +12,6 @@ function SignUpPage() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const router = useRouter();
-  const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   const addUser = async () => {
     const payload = {

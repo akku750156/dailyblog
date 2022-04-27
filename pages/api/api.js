@@ -25,7 +25,7 @@ export const checkUser = async (user) => {
     localStorage.setItem("user", JSON.stringify(response.data));
     return response;
   } catch (error) {
-    console.log("Error in newUser API", error);
+    console.log("Error in checkUser API", error);
   }
 };
 
@@ -54,13 +54,14 @@ export const deletePost = async (id) => {
   }
 };
 
-export const addCommentPost = async (id, comment) => {
+export const addCommentPost = async (id, comment, userComment) => {
   if (!comment) {
     console.log("Comment to addCommnetPost tk hi nhi pahucha");
   }
   try {
     await axios.post(`${URL}/comment/${id}`, {
       comment: comment,
+      userComment: userComment,
       created: Date.now(),
     });
   } catch (error) {

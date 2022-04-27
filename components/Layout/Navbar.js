@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   HomeOutlined,
   PhoneOutlined,
@@ -9,6 +10,11 @@ import {
 } from "@ant-design/icons";
 
 function Navbar() {
+  const router = useRouter();
+  var userData;
+  if (typeof window !== "undefined") {
+    userData = window.localStorage.getItem("user");
+  }
   return (
     <nav className="fixed top-0 z-50 bg-gradient-to-b from-black to-transparent h-20 w-full flex justify-center items-center flex-col">
       <div className="w-10/12 flex items-center justify-between h-full">
@@ -45,12 +51,29 @@ function Navbar() {
               <h1 className="text-md font-light">About</h1>
             </div>
           </Link>
-          <Link href="/SignUpPage" passHref>
+          {userData ? (
             <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
               <LoginOutlined />
-              <h1 className="text-md font-light">Login</h1>
+              <h1
+                className="text-md font-light"
+                onClick={() => {
+                  localStorage.removeItem("user");
+                  localStorage.removeItem("token");
+                  console.log(window.location.href);
+                  router.push(window.location.href);
+                }}
+              >
+                LogOut
+              </h1>
             </div>
-          </Link>
+          ) : (
+            <Link href="/SignUpPage" passHref>
+              <div className="flex flex-col justify-center items-center cursor-pointer hover:text-white text-gray-300">
+                <LoginOutlined />
+                <h1 className="text-md font-light">Login</h1>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

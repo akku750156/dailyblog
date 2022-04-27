@@ -29,12 +29,17 @@ function CreateView() {
     }
   };
 
+  var userData;
+  if (typeof window !== "undefined") {
+    userData = JSON.parse(window.localStorage.getItem("user"));
+  }
+
   const savePost = async () => {
     const payload = {
       title: title,
       description: description,
       picture: url,
-      username: username,
+      username: userData.user.username,
       categories: categories,
       createDate: createDate,
     };
