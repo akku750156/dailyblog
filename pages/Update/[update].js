@@ -5,6 +5,12 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import axios from "axios";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
+const antIcon = (
+  <LoadingOutlined style={{ fontSize: 24, color: "yellow" }} spin />
+);
 
 export const getStaticProps = async (context) => {
   const id = context.params.update;
@@ -38,6 +44,7 @@ function UpdateView({ post }) {
   const [title, setTitle] = useState(post.title);
   const [description, setDescription] = useState(post.description);
   const [photo, setPhoto] = useState(post.picture);
+  const [loading, setLoading] = useState(false);
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -67,8 +74,9 @@ function UpdateView({ post }) {
       categories: post.categories,
       createDate: new Date(),
     };
-
+    setLoading(true);
     await updatePost(post._id, payload);
+    setLoading(false);
     router.push(`/Detail/${post._id}`);
   };
 
@@ -82,53 +90,61 @@ function UpdateView({ post }) {
         <link rel="icon" href="/blog-logo-1.png" className="text-white" />
       </Head>
       <div className="min-h-screen w-full mx-auto mt-24 md:mt-24">
-        <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 relative">
-          <Image
-            layout="fill"
-            src={url}
-            alt="Image"
-            className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
-          />
-        </div>
-        <div className="flex justify-start py-2">
-          <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
-            <label htmlFor="fileInput">
-              <PlusCircleFilled />
-              <input
-                type="file"
-                id="fileInput"
-                style={{ display: "none" }}
-                onChange={(e) => uploadImage(e.target.files[0])}
-              />
-            </label>
+        {loading ? (
+          <div className="flex w-full h-screen justify-center items-center">
+            <Spin indicator={antIcon} />
           </div>
-        </div>
-        <div className="flex justify-center">
-          <input
-            className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300 bg-black outline-none"
-            value={title}
-            name="title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div className=" my-4 lg:my-8 text-sm md:text-lg">
-          <textarea
-            className="w-full h-48 bg-gray-800 resize-none text-sm p-2 focus:outline-none"
-            value={description}
-            name="description"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div className="flex justify-end">
-          <button
-            onClick={() => {
-              updateBlog();
-            }}
-            className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out"
-          >
-            Update
-          </button>
-        </div>
+        ) : (
+          <>
+            <div className="w-full lg:h-96 md:h-72 sm:h-60 h-48 relative">
+              <Image
+                layout="fill"
+                src={url}
+                alt="Image"
+                className=" w-full h-full object-cover shadow-2xl shadow-gray-700"
+              />
+            </div>
+            <div className="flex justify-start py-2">
+              <div className="ml-4 md:border-2 px-2 pb-2 md:border-yellow-300 rounded-xl cursor-pointer">
+                <label htmlFor="fileInput">
+                  <PlusCircleFilled />
+                  <input
+                    type="file"
+                    id="fileInput"
+                    style={{ display: "none" }}
+                    onChange={(e) => uploadImage(e.target.files[0])}
+                  />
+                </label>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <input
+                className="text-2xl md:text-4xl lg:text-5xl font-semibold text-gray-300 bg-black outline-none"
+                value={title}
+                name="title"
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div className=" my-4 lg:my-8 text-sm md:text-lg">
+              <textarea
+                className="w-full h-48 bg-gray-800 resize-none text-sm p-2 focus:outline-none"
+                value={description}
+                name="description"
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="flex justify-end">
+              <button
+                onClick={() => {
+                  updateBlog();
+                }}
+                className="py-2 px-6 bg-yellow-300 rounded-xl mr-4 text-black border-2 border-black hover:text-yellow-300 hover:border-2 hover:border-yellow-300 hover:bg-black transition-all ease-in-out"
+              >
+                Update
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
